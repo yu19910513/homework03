@@ -5,7 +5,9 @@ var generateBtn = document.querySelector("#generate");
 var specialC = ["@", "!", "#","$","%","^","&","*","&","*","(",")", ",", ".", "/", ";", "[", "]", "-", "=", "+", "~", "<", ">", "?"];
 var wordsLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ];
 var wordsUpper = wordsLower.map(function(x){ return x.toUpperCase(); });
-var numbersMinor = []; for (var i = 0; i <= 9; i++) {numbersMinor.push(i)};
+var numbersMinor = [].concat([]); for (var i = 0; i <= 9; i++) {numbersMinor.push(i)};
+var numbersMinor = numbersMinor.concat(numbersMinor.concat(numbersMinor)); //to have even amount of number from the rest of charaters
+
 var boss;
 
 var uppcaseCount = 0;
@@ -71,27 +73,27 @@ function shuffleEq(chain) {
 }
 
 function generatePassword() {
-  var input = parseInt(prompt("How many of charaters would you like your password to be? (in range between 8 and 128)"));
+  var input = parseInt(prompt("How many characters would you like to use in a password? (min of 8; max of 128)"));
   if (!input) {
-    alert("you have to choose a valid number between 8 and 128")
+    alert("You have to choose a valid number between 8 and 128")
   } else if (input => 8 || input <= 128) {
     if (
-      secondAns = confirm("include uppercase?"))
+      secondAns = confirm("includes uppercase?"))
       {
         secondQuestion();
       }
     if (
-      thirdAns = confirm("include lowercase?")
+      thirdAns = confirm("includes lowercase?")
     ) {
       thirdQuestion()
     }
     if (
-      forthAns = confirm("with speical charater?")
+      forthAns = confirm("with speical characters?")
     ) {
       forthQuestion()
     }
     if (
-      fifthAns = confirm("with number?")
+      fifthAns = confirm("with numbers?")
     ) {
       fifthQuestion()
     }
@@ -100,7 +102,7 @@ function generatePassword() {
   var peopleChoice = uppcaseCount + lowercaseCount + specialChaCount + numberNumberCount;
 
   if (peopleChoice == 0) {
-    alert ("try again! at least one criteria")
+    alert ("Please try again! at least one criteria")
   } else {
   var smallBoss = boss.concat(boss.concat(boss.concat(boss.concat(boss.concat(boss))))); // ensure that final array => 128
   var midBoss = shuffleEq(smallBoss);
@@ -109,8 +111,5 @@ function generatePassword() {
   }
 }
 
-
-
 // Add event listener to generate button
-
 generateBtn.addEventListener("click", writePassword);
