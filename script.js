@@ -67,7 +67,7 @@ function shuffleEq(chain) {
       const j = Math.floor(Math.random() * (i + 1));
       [chain[i], chain[j]] = [chain[j], chain[i]];
   }
-  return array;
+  return chain;
 }
 
 function generatePassword() {
@@ -105,5 +105,5 @@ function generatePassword() {
     console.log(shuffleEq(boss));
   var finalBoss = shuffleEq(boss).slice(0,input);
   }
-  return finalBoss;
+  return finalBoss.join("");
   }
