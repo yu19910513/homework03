@@ -1,16 +1,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+
+//DATABASE
 var specialC = ["@", "!", "#","$","%","^","&","*","&","*","(",")", ",", ".", "/", ";", "[", "]", "-", "=", "+", "~", "<", ">", "?"];
 var wordsLower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", ];
 var wordsUpper = wordsLower.map(function(x){ return x.toUpperCase(); });
-var numbersMinor = ["0","1","2","3","4","5","6","7","8","9"];
-// var numbersMinor = []; for (var i = 0; i <= 9; i++) {numbersMinor.push(i)};
+var numbersMinor = []; for (var i = 0; i <= 9; i++) {numbersMinor.push(i)};
 var boss;
 
 var uppcaseCount = 0;
 var lowercaseCount = 0;
 var specialChaCount = 0;
 var numberNumberCount = 0;
+
 var secondAns;
 var thirdAns;
 var forthAns;
@@ -25,10 +27,7 @@ function writePassword() {
 
 }
 
-// Add event listener to generate button
-
-generateBtn.addEventListener("click", writePassword);
-
+//Boolean Functions (global)
 function secondQuestion() {
   if (secondAns = true) {
     uppcaseCount = 1;
@@ -62,6 +61,7 @@ function fifthQuestion() {
   }
 }
 
+//Shuffle Function (global)
 function shuffleEq(chain) {
   for (let i = chain.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -102,8 +102,15 @@ function generatePassword() {
   if (peopleChoice == 0) {
     alert ("try again! at least one criteria")
   } else {
-    console.log(shuffleEq(boss));
-  var finalBoss = shuffleEq(boss).slice(0,input);
+  var smallBoss = boss.concat(boss.concat(boss.concat(boss.concat(boss.concat(boss))))); // ensure that final array => 128
+  var midBoss = shuffleEq(smallBoss);
+  var finalBoss = midBoss.slice(0,input);
+  return finalBoss.join(""); //remove coma
   }
-  return finalBoss.join("");
-  }
+}
+
+
+
+// Add event listener to generate button
+
+generateBtn.addEventListener("click", writePassword);
