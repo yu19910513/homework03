@@ -76,7 +76,7 @@ function generatePassword() {
   var input = parseInt(prompt("How many characters would you like to use in a password? (min of 8; max of 128)"));
   if (!input) {
     alert("You have to choose a valid number between 8 and 128")
-  } else if (input => 8 || input <= 128) {
+  } else if (input >= 8 && input <= 128) {
     if (
       secondAns = confirm("includes uppercase?"))
       {
